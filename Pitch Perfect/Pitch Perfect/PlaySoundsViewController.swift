@@ -38,19 +38,13 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func slowButtonPressed(sender: UIButton) {
         
         // slowButtonPressed Action reduces the play rate of the recorded audio file and plays it
-        audioPlayer.stop()
-        audioPlayer.rate = 0.5
-        audioPlayer.currentTime = 0
-        audioPlayer.play()
+        playAudio(0.5)
     }
 
     @IBAction func fastButtonPressed(sender: UIButton) {
         
         // fastButtonPressed Action increases the play rate of the recorded audio file and plays it
-        audioPlayer.stop()
-        audioPlayer.rate = 2.0
-        audioPlayer.currentTime = 0
-        audioPlayer.play()
+        playAudio(2.0)
     }
     
     @IBAction func chipmunkButtonPressed(sender: UIButton) {
@@ -63,6 +57,14 @@ class PlaySoundsViewController: UIViewController {
         
         // darthVaderButtonPressed Action lowers the pitch level of the recorded audio files and plays the result
         playAudioWithVariablePitch(-1000)
+    }
+    
+    func playAudio(rate:float_t) {
+        audioEngine.stop()
+        audioPlayer.stop()
+        audioPlayer.rate = rate
+        audioPlayer.currentTime = 0
+        audioPlayer.play()
     }
     
     func playAudioWithVariablePitch(pitch: Float){
